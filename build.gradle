@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+
+        maven { url "http://repo.spring.io/libs-snapshot" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+    }
+}
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+
+repositories {
+
+    mavenCentral()
+    maven { url "https://repo.spring.io/libs-release" }
+    maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url "http://maven.springframework.org/milestone" }
+    maven { url "http://repo.opensourceagility.com/snapshots" }
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    // The production code uses the SLF4J logging API at compile time
+    compile 'org.slf4j:slf4j-api:1.7.5'
+compile 'org.springframework.data.build:spring-data-parent:1.6.0.RELEASE'
+    compile('org.springframework:spring-context:4.1.4.RELEASE')
+    compile 'org.springframework:spring-context-support:4.1.4.RELEASE'
+    compile 'org.springframework:spring-tx:4.1.6.RELEASE'
+    compile("org.springframework.data:spring-data-commons:1.10.0.RELEASE")
+    compile('javax.validation:validation-api:1.1.0.Final' )
+    compile("com.squareup.retrofit:retrofit:1.6.0")
+    compile("commons-io:commons-io:2.4")
+    compile 'commons-collections:commons-collections:3.2.1'
+    compile("org.apache.httpcomponents:httpclient:4.3.6")
+    compile 'org.apache.commons:commons-lang3:3.4'
+compile 'org.apache.httpcomponents:httpclient-cache:4.4.1'
+compile 'joda-time:joda-time:2.7'
+compile 'com.amazonaws:aws-java-sdk:1.9.33'
+compile 'com.amazonaws:aws-java-sdk-dynamodb:1.9.33'
+compile 'com.netflix.rx-aws-java-sdk:rx-aws-java-sdk-core:0.1.4'
+
+    compile 'cglib:cglib:3.1'
+    providedcompile 'javax.enterprise:cdi-api:1.2'
+
+    // Declare the dependency for your favourite test framework you want to use in your tests.
+    // TestNG is also supported by the Gradle Test task. Just change the
+    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
+    // 'test.useTestNG()' to your build script.
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.apache.openwebbeans.test:cditest-owb:1.2.7'
+testCompile 'org.springframework:spring-jdbc:4.1.6.RELEASE'
+testCompile 'com.h2database:h2:1.4.187'
+    testCompile "org.mockito:mockito-all:1.9.5"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = 2.3
+}
